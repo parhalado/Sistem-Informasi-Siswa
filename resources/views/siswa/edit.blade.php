@@ -53,11 +53,12 @@
                                                         </div>
                                                    </div>
                                                     
-                                                            
+                                                    {{-- FOOTER         --}}
                                                 
                                                     <div class="modal-footer">
+
                                                         <button type="button" class="btn btn-secondary m-3" data-bs-dismiss="modal">Tutup</button>
-                                                        <button type="submit" class="btn btn-warning"> Update</button>
+                                                        <button type=" submit" class="btn btn-warning"> Update</button>
                                                     </div>
                                             </form>
 								</div>	

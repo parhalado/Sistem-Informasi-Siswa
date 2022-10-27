@@ -53,7 +53,7 @@
                                                         </div>
                                                    </div>
                                                     
-                                                    {{-- FOOTER         --}}
+                                                    {{-- FOOTER  1       --}}
                                                 
                                                     <div class="modal-footer">
 

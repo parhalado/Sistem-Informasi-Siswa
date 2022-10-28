@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SiswaController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,11 +17,21 @@ use App\Http\Controllers\SiswaController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
-Route::get('/siswa',[SiswaController::class ,'index'])->name('index');
-Route::post('/siswa/create', [SiswaController::class, 'create'])->name('create');
-Route::get('/siswa/{id}/edit',[SiswaController::class,'edit'])->name('edit');
-Route::post('/siswa/{id}/update', [SiswaController::class, 'update'])->name('update');
-Route::get('/siswa/{id}/delete',[SiswaController::class,'delete'])->name('delete');
+Route::get('/dashboard',[DashboardController::class,'index'])->name('index')->middleware('auth');
+
+Route::get('/login',[AuthController::class,'login'])->name('login');
+Route::post('/postlogin',[AuthController::class,'postlogin'])->name('postlogin');
+Route::get('/logout',[AuthController::class,'logout'])->name('logout');
+
+Route::group(['middleware' => 'auth'], function()
+{
+    Route::get('/siswa',[SiswaController::class ,'index'])->name('index');
+    Route::post('/siswa/create', [SiswaController::class, 'create'])->name('create');
+    Route::get('/siswa/{id}/edit',[SiswaController::class,'edit'])->name('edit');
+    Route::post('/siswa/{id}/update', [SiswaController::class, 'update'])->name('update');
+    Route::get('/siswa/{id}/delete',[SiswaController::class,'delete'])->name('delete');
+
+});

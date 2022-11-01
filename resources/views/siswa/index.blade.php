@@ -37,8 +37,8 @@
                                                 
                                                     @foreach ($data_siswa as $siswa)
                                                     <tr>
-                                                        <td>{{ $siswa ->nama_depan }}</td>
-                                                        <td>{{ $siswa ->nama_belakang }}</td>
+                                                        <td><a href="/siswa/{{ $siswa->id }}/profile">  {{ $siswa ->nama_depan }}</a></td>
+                                                        <td><a href="/siswa/{{ $siswa->id }}/profile">{{ $siswa ->nama_belakang }}</a></td>
                                                         <td>{{ $siswa ->jenis_kelamin }}</td>
                                                         <td>{{ $siswa ->agama }}</td>
                                                         <td>{{ $siswa ->alamat }}</td>
@@ -78,7 +78,13 @@
                                     <label for="exampleInputEmail1" class="form-label">Nama Belakang</label>
                                     <input name="nama_belakang" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nama Belakang">
                                 </div>
-                                <select name="jenis_kelamin" class="form-select mb-3" aria-label="Default select example">
+
+                                 <div class="mb-3">
+                                    <label for="exampleInputEmail1" class="form-label">Email</label>
+                                    <input name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email">
+                                </div>
+
+                                <select name="jenis_kelamin" class="form-select mb-3 mt-3" aria-label="Default select example">
                                     <option selected>Pilih Jenis Kelamin</option>
                                     <option value="L">Laki - Laki</option>
                                     <option value="P">Perempuan</option>

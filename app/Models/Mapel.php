@@ -12,6 +12,7 @@ class Mapel extends Model
     public function siswa()
     {
         return $this->belongsToMany(Siswa::class);
+        
     }
     use HasFactory;
 }

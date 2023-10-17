@@ -39,7 +39,6 @@ Route::group(['middleware' => ['auth','checkRole:admin']], function()
     Route::get('/siswa/{id}/profile',[SiswaController::class,'profile'])->name('profile');
 
 });
-
 // routes dengan role siswa dan admin
 Route::group(['middleware' => ['auth','checkRole:admin,siswa']], function()
 {

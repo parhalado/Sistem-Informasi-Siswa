@@ -21,7 +21,7 @@ class Siswa extends Model
      
      public function mapel()
      {
-        return $this->belongsToMany(Mapel::class);
+        return $this->belongsToMany(Mapel::class)->withPivot('nilai');
      }
    
      use HasFactory;

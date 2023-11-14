@@ -11,8 +11,8 @@ class Mapel extends Model
     protected $fillable = ['kode','nama','semester'];
     public function siswa()
     {
-        return $this->belongsToMany(Siswa::class);
-        
+        return $this->belongsToMany(Siswa::class)->withPivot('nilai');
+
     }
     use HasFactory;
 }

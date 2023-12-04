@@ -37,6 +37,8 @@ Route::group(['middleware' => ['auth','checkRole:admin']], function()
     Route::post('/siswa/{id}/update', [SiswaController::class, 'update'])->name('update');
     Route::get('/siswa/{id}/delete',[SiswaController::class,'delete'])->name('delete');
     Route::get('/siswa/{id}/profile',[SiswaController::class,'profile'])->name('profile');
+    Route::post('siswa/{id}/addnilai',[SiswaController::class,'addnilai'])->name('addnilai');
+    Route::get('/siswa/{id}/{idmapel}/deletenilai',[SiswaController::class,'deletenilai'])->name('deletenilai');
 
 });
 // routes dengan role siswa dan admin

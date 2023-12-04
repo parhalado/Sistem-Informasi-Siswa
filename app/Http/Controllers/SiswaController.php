@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Mapel;
 use App\Models\Siswa;
 use App\Models\User;
 use Illuminate\Support\Str;
@@ -79,6 +80,38 @@ class SiswaController extends Controller
     public function profile($id)
     {
         $siswa = Siswa::find($id);
-        return view('siswa.profile',['siswa' => $siswa]);
+        $matapelajaran = Mapel::all();
+
+
+        // menyiapkan data untuk chart
+        $categories = [];
+        $data =[];
+        foreach($matapelajaran as $mp)
+        {
+            if ($siswa->mapel()->wherePivot('mapel_id', $mp->id)->first()) {
+                $categories[] = $mp->nama;
+                $data[] = $siswa->mapel()->wherePivot('mapel_id', $mp->id)->first()->pivot->nilai;
+            }
+           
+        }
+       
+        return view('siswa.profile',['siswa' => $siswa,'matapelajaran' => $matapelajaran,'categories'=> $categories, 'data' => $data]);
+    }
+    public function addnilai(Request $request,$idsiswa)
+    {
+        $siswa= Siswa::find($idsiswa);
+        if ($siswa->mapel()->where('mapel_id',$request->mapel)->first()) 
+        {
+            return redirect('siswa/' . $idsiswa . '/profile')->with('error', 'Data mata pelajaran sudah ada');
+        }
+        $siswa->mapel()->attach($request->mapel,['nilai' => $request->nilai]);
+        return redirect('siswa/'.$idsiswa.'/profile')->with('sukses','Data Nilai berhasil di masukkan');
+    }
+
+    public function deletenilai($idsiswa, $idmapel)
+    {
+        $siswa = Siswa::find($idsiswa);
+        $siswa->mapel()->detach($idmapel);
+        return redirect()->back()->with('sukses','Data Nilai Berhasil Di hapus');
     }
 }

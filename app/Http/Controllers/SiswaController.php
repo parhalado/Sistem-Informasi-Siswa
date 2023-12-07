@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\SiswaExport;
 use App\Models\Mapel;
 use App\Models\Siswa;
 use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+
+use Barryvdh\DomPDF\Facade\Pdf;
+use Maatwebsite\Excel\Facades\Excel;
 
 class SiswaController extends Controller
 {
@@ -114,4 +118,15 @@ class SiswaController extends Controller
         $siswa->mapel()->detach($idmapel);
         return redirect()->back()->with('sukses','Data Nilai Berhasil Di hapus');
     }
+    public function export()
+    {
+        return Excel::download(new SiswaExport, 'Siswa.xlsx');
+    }
+    public function exportpdf()
+    {
+        $siswa = Siswa::all();
+        $pdf = PDF::loadView('exports.pdf',['siswa' => $siswa]);
+        return $pdf->download('siswa.pdf');
+    }
+    
 }

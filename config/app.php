@@ -143,6 +143,10 @@ return [
         // 'store'  => 'redis',
     ],
 
+ 
+
+
+
     /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers
@@ -209,7 +213,7 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
-        // 'ExampleClass' => App\Example\ExampleClass::class,
+       $app->register(\Barryvdh\DomPDF\ServiceProvider::class),
     ])->toArray(),
 
 ];

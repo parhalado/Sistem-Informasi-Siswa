@@ -40,7 +40,10 @@ Route::group(['middleware' => ['auth','checkRole:admin']], function()
     Route::get('/siswa/{id}/profile',[SiswaController::class,'profile'])->name('profile');
     Route::post('siswa/{id}/addnilai',[SiswaController::class,'addnilai'])->name('addnilai');
     Route::get('/siswa/{id}/{idmapel}/deletenilai',[SiswaController::class,'deletenilai'])->name('deletenilai');
+     Route::get('siswa/export/', [SiswaController::class, 'export'])->name('export');  // Export Excel
+    Route::get('siswa/exportpdf/', [SiswaController::class, 'exportpdf'])->name('exportpdf');
     Route::get('guru/{id}/profile',[GuruController::class,'profile'])->name('profile');
+
 
 });
 // routes dengan role siswa dan admin

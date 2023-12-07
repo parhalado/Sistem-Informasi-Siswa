@@ -17,6 +17,8 @@
 
                                 <h3 class="panel-title">Tabel Data Siswa</h3>
                                 <div class="right">
+                                    <a href="/siswa/export" class="fa fa-download ">Download Excel</a>
+                                     <a href="/siswa/exportpdf" class="fa fa-download ">Download PDF</a>
                                     <button type="button" class="btn " data-toggle="modal" data-target="#exampleModal">
                                         <i class="lnr lnr-plus-circle"></i>
                                     </button>
@@ -31,6 +33,7 @@
                                         <th>JENIS KELAMIN</th>
                                         <th>AGAMA</th>
                                         <th>ALAMAT</th>
+                                        <th>RATA NILAI</th>
                                         <th>AKSI</th>
                                     </tr>
 
@@ -45,6 +48,7 @@
                                             <td>{{ $siswa->jenis_kelamin }}</td>
                                             <td>{{ $siswa->agama }}</td>
                                             <td>{{ $siswa->alamat }}</td>
+                                            <td>{{ $siswa->rataNilai() }}</td>
                                             <td>
                                                 <a href="/siswa/{{ $siswa->id }}/edit"
                                                     class="btn btn-warning btn-sm">Edit</a>

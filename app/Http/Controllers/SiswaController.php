@@ -57,14 +57,12 @@ class SiswaController extends Controller
 
         return redirect('/siswa')->with('sukses','Data Berhasil Ditambahkan !');
     }
-    public function edit($id)
+    public function edit(Siswa $siswa)
     {
-        $siswa =Siswa::find($id);
         return view('/siswa/edit',['siswa' => $siswa]);
     }
-    public function update(Request $request ,$id)
+    public function update(Request $request ,Siswa $siswa)
     {
-        $siswa = Siswa::find($id);
         $siswa->update($request->all());
         if($request->hasFile('avatar'))
         {
@@ -74,19 +72,16 @@ class SiswaController extends Controller
         }
         return redirect('/siswa')->with('sukses','Data berhasil di ubah');
     }
-    public function delete($id)
+    public function delete(Siswa $siswa)
     {
-        $siswa = Siswa::find($id);
+
         $siswa->delete();
 
         return redirect('/siswa')->with('sukses','Data Berhasil di Hapus');
     }
-    public function profile($id)
+    public function profile(Siswa $siswa)
     {
-        $siswa = Siswa::find($id);
         $matapelajaran = Mapel::all();
-
-
         // menyiapkan data untuk chart
         $categories = [];
         $data =[];

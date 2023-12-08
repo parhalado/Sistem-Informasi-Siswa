@@ -34,10 +34,10 @@ Route::group(['middleware' => ['auth','checkRole:admin']], function()
     
     Route::get('/siswa',[SiswaController::class ,'index'])->name('index');
     Route::post('/siswa/create', [SiswaController::class, 'create'])->name('create');
-    Route::get('/siswa/{id}/edit',[SiswaController::class,'edit'])->name('edit');
-    Route::post('/siswa/{id}/update', [SiswaController::class, 'update'])->name('update');
-    Route::get('/siswa/{id}/delete',[SiswaController::class,'delete'])->name('delete');
-    Route::get('/siswa/{id}/profile',[SiswaController::class,'profile'])->name('profile');
+    Route::get('/siswa/{siswa}/edit',[SiswaController::class,'edit'])->name('edit');
+    Route::post('/siswa/{siswa}/update', [SiswaController::class, 'update'])->name('update');
+    Route::get('/siswa/{siswa}/delete',[SiswaController::class,'delete'])->name('delete');
+    Route::get('/siswa/{siswa}/profile',[SiswaController::class,'profile'])->name('profile');
     Route::post('siswa/{id}/addnilai',[SiswaController::class,'addnilai'])->name('addnilai');
     Route::get('/siswa/{id}/{idmapel}/deletenilai',[SiswaController::class,'deletenilai'])->name('deletenilai');
      Route::get('siswa/export/', [SiswaController::class, 'export'])->name('export');  // Export Excel

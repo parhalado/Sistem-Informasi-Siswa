@@ -18,7 +18,7 @@
                                 <h3 class="panel-title">Tabel Data Siswa</h3>
                                 <div class="right">
                                     <a href="/siswa/export" class="fa fa-download ">Download Excel</a>
-                                     <a href="/siswa/exportpdf" class="fa fa-download ">Download PDF</a>
+                                    <a href="/siswa/exportpdf" class="fa fa-download ">Download PDF</a>
                                     <button type="button" class="btn " data-toggle="modal" data-target="#exampleModal">
                                         <i class="lnr lnr-plus-circle"></i>
                                     </button>
@@ -42,8 +42,7 @@
                                         <tr>
                                             <td><a href="/siswa/{{ $siswa->id }}/profile"> {{ $siswa->nama_depan }}</a>
                                             </td>
-                                            <td><a
-                                                    href="/siswa/{{ $siswa->id }}/profile">{{ $siswa->nama_belakang }}</a>
+                                            <td><a href="/siswa/{{ $siswa->id }}/profile">{{ $siswa->nama_belakang }}</a>
                                             </td>
                                             <td>{{ $siswa->jenis_kelamin }}</td>
                                             <td>{{ $siswa->agama }}</td>
@@ -52,8 +51,8 @@
                                             <td>
                                                 <a href="/siswa/{{ $siswa->id }}/edit"
                                                     class="btn btn-warning btn-sm">Edit</a>
-                                                <a href="/siswa/{{ $siswa->id }}/delete" class="btn btn-danger btn-sm"
-                                                    onclick="return confirm('Yakin data {{ $siswa->nama_depan }} ini akan di hapus?')">Delete</a>
+                                                <a href="#" class="btn btn-danger btn-sm delete"
+                                                    siswa-id="{{ $siswa->id }}">Delete</a>
                                             </td>
 
                                         </tr>
@@ -94,48 +93,54 @@
                         <div class="form-group {{ $errors->has('nama_belakang') ? 'has-error' : '' }}">
                             <label for="exampleInputEmail1" class="form-label">Nama Belakang</label>
                             <input name="nama_belakang" type="text" class="form-control" id="exampleInputEmail1"
-                                aria-describedby="emailHelp" placeholder="Nama Belakang" value="{{ old('nama_belakang') }}">
-                         @if ($errors->has('nama_belakang'))
+                                aria-describedby="emailHelp" placeholder="Nama Belakang"
+                                value="{{ old('nama_belakang') }}">
+                            @if ($errors->has('nama_belakang'))
                                 <span class="help_block">{{ $errors->first('nama_belakang') }}</span>
                             @endif
-                        
-                         </div>
+
+                        </div>
 
                         <div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
                             <label for="exampleInputEmail1" class="form-label">Email</label>
                             <input name="email" type="email" class="form-control" id="exampleInputEmail1"
                                 aria-describedby="emailHelp" placeholder="Email" value="{{ old('email') }}">
 
-                                 @if ($errors->has('email'))
+                            @if ($errors->has('email'))
                                 <span class="help_block">{{ $errors->first('email') }}</span>
                             @endif
                         </div>
 
                         <div class="form-group {{ $errors->has('jenis_kelamin') ? 'has-error' : '' }} ">
                             <label for="exampleFormControlSelect">Pilih Jenis Kelamin</label>
-                            <select name="jenis_kelamin" class="form-control" id="exampleFormControlSelect1" >
+                            <select name="jenis_kelamin" class="form-control" id="exampleFormControlSelect1">
 
-                                <option value="L" {{(old('jenis_kelamin') == 'L') ? 'selected': '' }}>Laki - Laki</option>
-                                <option value="P" {{(old('jenis_kelamin') == 'P') ? 'selected': '' }}>Perempuan</option>
+                                <option value="L" {{ old('jenis_kelamin') == 'L' ? 'selected' : '' }}>Laki - Laki
+                                </option>
+                                <option value="P" {{ old('jenis_kelamin') == 'P' ? 'selected' : '' }}>Perempuan
+                                </option>
 
                             </select>
-                             @if ($errors->has('jenis_kelamin'))
+                            @if ($errors->has('jenis_kelamin'))
                                 <span class="help_block">{{ $errors->first('jenis_kelamin') }}</span>
                             @endif
                         </div>
 
                         <div class="form-group {{ $errors->has('agama') ? 'has-error' : '' }}">
                             <label for="exampleFormControlSelect">Pilih Agama</label>
-                            <select name="agama" class="form-control" aria-label="exampleFormControlSelect1" >
+                            <select name="agama" class="form-control" aria-label="exampleFormControlSelect1">
 
-                                <option value="Kristen Protestan" {{(old('agama') == 'Kristen Protestan') ? 'selected': '' }} >Kristen Protestan</option>
-                                <option value="Kristen Khatolik" {{(old('agama') == 'Kristen Khatolik') ? 'selected': '' }} >Kristen Khatolik</option>
-                                <option value="Islam" {{(old('agama') == 'Islam') ? 'selected': '' }}>Islam</option>
-                                <option value="Hindu" {{(old('agama') == 'Hindu') ? 'selected': '' }}>Hindu</option>
-                                <option value="Budha" {{(old('agama') == 'Budha') ? 'selected': '' }}>Budha</option>
-                                <option value="Khong Hu Chu" {{(old('agama') == 'Khong Hu Chu') ? 'selected': '' }}>Khong Hu Chu</option>
+                                <option value="Kristen Protestan"
+                                    {{ old('agama') == 'Kristen Protestan' ? 'selected' : '' }}>Kristen Protestan</option>
+                                <option value="Kristen Khatolik"
+                                    {{ old('agama') == 'Kristen Khatolik' ? 'selected' : '' }}>Kristen Khatolik</option>
+                                <option value="Islam" {{ old('agama') == 'Islam' ? 'selected' : '' }}>Islam</option>
+                                <option value="Hindu" {{ old('agama') == 'Hindu' ? 'selected' : '' }}>Hindu</option>
+                                <option value="Budha" {{ old('agama') == 'Budha' ? 'selected' : '' }}>Budha</option>
+                                <option value="Khong Hu Chu" {{ old('agama') == 'Khong Hu Chu' ? 'selected' : '' }}>Khong
+                                    Hu Chu</option>
                             </select>
-                             @if ($errors->has('agama'))
+                            @if ($errors->has('agama'))
                                 <span class="help_block">{{ $errors->first('agama') }}</span>
                             @endif
                         </div>
@@ -150,11 +155,11 @@
                         <div class="form-group {{ $errors->has('avatar') ? 'has-error' : '' }}"">
                             <label for="exampleFormControlSelect1" class="mb-3">Avatar</label>
                             <input type="file" name="avatar" class="form-control">
-                                
-                          @if ($errors->has('avatar'))
+
+                            @if ($errors->has('avatar'))
                                 <span class="help_block">{{ $errors->first('avatar') }}</span>
                             @endif
-                         </div>
+                        </div>
 
 
                 </div>
@@ -168,4 +173,25 @@
     </div>
 
 
+@stop
+@section('footer')
+    <script>
+        $('.delete').click(function() {
+            var siswa_id = $(this).attr('siswa-id');
+            
+            swal({
+                    title: "Hapus ?",
+                    text: "Data siswa "+ siswa_id +" akan di hapus ?",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        window.location="/siswa/"+siswa_id+"/delete";
+                       
+                    } 
+                });
+        });
+    </script>
 @stop

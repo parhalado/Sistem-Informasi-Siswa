@@ -10,7 +10,8 @@
 	<link rel="stylesheet" href="{{asset('admin/assets/vendor/bootstrap/css/bootstrap.min.css')}}">
 	<link rel="stylesheet" href="{{ asset('admin/assets/vendor/font-awesome/css/font-awesome.min.css') }}">
 	<link rel="stylesheet" href="{{ asset('admin/assets/vendor/linearicons/style.css') }}">
-	
+	{{-- TOASTER --}}
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 	<!-- MAIN CSS -->
 	<link rel="stylesheet" href="{{ asset('admin/assets/css/main.css') }}">
 	<!-- FOR DEMO PURPOSES ONLY. You should remove this in your project -->
@@ -50,6 +51,16 @@
 	<script src="{{ asset('admin/assets/vendor/bootstrap/js/bootstrap.min.js') }}"></script>
 	<script src="{{ asset('admin/assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js') }}"></script>
 	<script src="{{ asset('admin/assets/scripts/klorofil-common.js') }}"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+	<script>
+		@if (Session::has('sukses')) 
+		{
+			toastr.success("{{ Session::get('sukses') }}!")
+		}
+		@endif
+	</script>
+	
 	@yield('footer')
 </body>
 

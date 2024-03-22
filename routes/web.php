@@ -5,6 +5,7 @@ use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\GuruController;
+use App\Http\Controllers\SiteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,9 +18,9 @@ use App\Http\Controllers\GuruController;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/',[SiteController::class,'home'])->name('home');
+Route::get('/about',[SiteController::class,'about'])->name('about');
+Route::get('/register',[SiteController::class,'register'])->name('register');
 
 
 
